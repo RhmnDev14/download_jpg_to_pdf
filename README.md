@@ -8,6 +8,7 @@ Script untuk mendownload modul dari website dan menggabungkannya menjadi satu fi
 - Menggabungkan semua halaman menjadi 1 file PDF
 - Konfigurasi via file `.env`
 - Rate limiting untuk menghindari block dari server
+- Kirim PDF ke WhatsApp via WAHA API
 
 ## Instalasi
 
@@ -35,6 +36,27 @@ go mod download
    OUTPUT_NAME=nama_output_pdf
    ```
 
+### Konfigurasi WhatsApp (Opsional)
+
+Untuk mengirim PDF otomatis ke WhatsApp setelah selesai download, tambahkan konfigurasi WAHA:
+
+```env
+# WAHA WhatsApp API Configuration
+WAHA_API_URL=https://your-waha-server.com
+WAHA_API_KEY=your_api_key
+WAHA_SESSION=default
+WAHA_RECIPIENT=628123456789
+```
+
+| Parameter        | Deskripsi                                  |
+| ---------------- | ------------------------------------------ |
+| `WAHA_API_URL`   | URL server WAHA API                        |
+| `WAHA_API_KEY`   | API key untuk autentikasi                  |
+| `WAHA_SESSION`   | Nama session WhatsApp (default: `default`) |
+| `WAHA_RECIPIENT` | Nomor WhatsApp tujuan (format: `628xxx`)   |
+
+> **Note:** Jika konfigurasi WAHA tidak diisi, fitur pengiriman WhatsApp akan dilewati.
+
 ## Penggunaan
 
 ```bash
@@ -47,6 +69,7 @@ Script akan:
 2. Menyimpan gambar sementara di folder `temp_images/`
 3. Menggabungkan semua gambar menjadi PDF
 4. Menghapus folder temporary
+5. Mengirim PDF ke WhatsApp (jika WAHA dikonfigurasi)
 
 ## Output
 
@@ -57,6 +80,7 @@ File PDF akan disimpan dengan nama sesuai `OUTPUT_NAME` di `.env`.
 - Pastikan session (PHPSESSID) masih aktif
 - Jika download gagal terus, kemungkinan IP di-rate limit. Tunggu beberapa menit.
 - Delay antar request: 1 detik, antar modul: 3 detik
+- Pengiriman file ke WhatsApp menggunakan multipart upload streaming
 
 ## License
 
