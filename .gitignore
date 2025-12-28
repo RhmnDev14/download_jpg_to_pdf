@@ -1,0 +1,13 @@
+# Environment variables
+.env
+
+# Output files
+*.pdf
+temp_images/
+
+# Go build files
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
