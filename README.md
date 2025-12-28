@@ -1,4 +1,4 @@
-# Script Download Modul UT
+# Script Download Modul
 
 Script untuk mendownload modul dari website dan menggabungkannya menjadi satu file PDF.
 
